@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Cargo } from 'src/resources/cargo/entities/cargo.entity';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('order')
 export class Order {
@@ -12,11 +13,20 @@ export class Order {
   to: string;
 
   @Column({ type: 'varchar', length: 255 })
-  cargo: string;
+  grain: string;
+
+  @Column({ type: 'int', default: 1 })
+  stage: number;
 
   @Column({ type: 'int' })
   weight: number;
 
   @Column({ type: 'varchar', length: 255, default: 'Pending' })
   status: string;
+
+  @Column({ type: 'timestamptz', nullable: true })
+  createdAt: Date;
+
+  @OneToOne(() => Cargo, (cargo) => cargo.order)
+  cargo: Cargo;
 }

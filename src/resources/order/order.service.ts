@@ -13,6 +13,7 @@ export class OrderService {
   ) {}
 
   create(createOrderDto: CreateOrderDto) {
+    createOrderDto.createdAt = new Date();
     return this.orderRepository.save(createOrderDto);
   }
 

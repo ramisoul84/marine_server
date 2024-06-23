@@ -20,11 +20,11 @@ export class CreateOrderDto {
 
   @ApiProperty({
     required: true,
-    description: 'Cargo',
+    description: 'Grain',
     example: 'Wheat',
   })
   @IsString()
-  cargo: string;
+  grain: string;
 
   @ApiProperty({
     required: true,
@@ -34,11 +34,9 @@ export class CreateOrderDto {
   @IsString()
   weight: number;
 
-  @ApiProperty({
-    required: true,
-    description: 'Status',
-    example: 'Pending',
-  })
-  @IsString()
-  status: string;
+  stage?: number;
+
+  status?: string;
+
+  createdAt?: Date;
 }
